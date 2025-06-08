@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctor Registration</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Hmq1T7MoB+DFJu7vPv1dPm3Z0PcHJz3klJZ7Icz1R9Po6S0+HShDlOYvq/iJbrxGzwxvGplZdV6wRreFbyS3+A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+  .input-with-country-code {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+  .day-item {
+    margin-bottom: 10px;
+  }
+  .time-section {
+    margin-top: 5px;
+    display: none; /* Hide time section by default */
+  }
+</style>
+</head>
+<body>
+<h2>Doctor Registration</h2>
+<form action="register_doc.php" method="POST">
+    <input type="hidden" name="userType" value="doctor">
+    <label for="doctor-name">Name:</label>
+    <input type="text" id="doctor-name" name="name" required>
+    <label for="doctor-age">Age:</label>
+    <input type="number" id="doctor-age" name="age" required>
+    <label for="doctor-contact">Contact No:</label>
+    <div class="input-with-country-code">
+        <select id="doctor-country-code" name="country-code" required>
+            <option value="+91">+91 (India)</option>
+            <option value="+1">+1 (USA)</option>
+            <option value="+44">+44 (UK)</option>
+            <!-- Add more options as needed -->
+        </select>
+        <input type="text" id="doctor-contact" name="contact" required placeholder="Enter your phone number">
+    </div>
+    <label for="doctor-gender">Gender:</label>
+    <select id="doctor-gender" name="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+    </select>
+    <label for="doctor-email-reg">Email:</label>
+    <input type="email" id="doctor-email-reg" name="email" required>
+    <label for="doctor-specialization">Specialization:</label>
+    <select id="doctor-specialization" name="specialization" required>
+        <option value="cardiologist">Cardiologist</option>
+        <option value="neurologist">Neurologist</option>
+        <option value="dermatologist">Dermatologist</option>
+        <!-- Add more options as needed -->
+    </select>
+    <div class="availability-form">
+        <h2>Select Doctor Availability</h2>
+        <div class="day-selection">
+            <button type="button" onclick="applyToAll()">Apply Timings to All</button>
+            <div class="day-item">
+                <h3>Monday</h3>
+                <label for="monday-available">
+                    <input type="checkbox" id="monday-available" name="availability[monday][available]" onchange="toggleTimeSection('monday')">
+                    Available
+                </label>
+                <div class="time-section" id="monday-section">
+                    <label for="monday-from">From:</label>
+                    <input type="time" id="monday-from" name="availability[monday][from]" placeholder="HH:MM">
+                    <label for="monday-to">To:</label>
+                    <input type="time" id="monday-to" name="availability[monday][to]" placeholder="HH:MM">
+                </div>
+            </div>
+            <div class="day-item">
+                <h3>Tuesday</h3>
+                <label for="tuesday-available">
+                    <input type="checkbox" id="tuesday-available" name="availability[tuesday][available]" onchange="toggleTimeSection('tuesday')">
+                    Available
+                </label>
+                <div class="time-section" id="tuesday-section">
+                    <label for="tuesday-from">From:</label>
+                    <input type="time" id="tuesday-from" name="availability[tuesday][from]" placeholder="HH:MM">
+                    <label for="tuesday-to">To:</label>
+                    <input type="time" id="tuesday-to" name="availability[tuesday][to]" placeholder="HH:MM">
+                </div>
+            </div>
+            <div class="day-item">
+                <h3>Wednesday</h3>
+                <label for="wednesday-available">
+                    <input type="checkbox" id="wednesday-available" name="availability[wednesday][available]" onchange="toggleTimeSection('wednesday')">
+                    Available
+                </label>
+                <div class="time-section" id="wednesday-section">
+                    <label for="wednesday-from">From:</label>
+                    <input type="time" id="wednesday-from" name="availability[wednesday][from]" placeholder="HH:MM">
+                    <label for="wednesday-to">To:</label>
+                    <input type="time" id="wednesday-to" name="availability[wednesday][to]" placeholder="HH:MM">
+                </div>
+            </div>
+            <div class="day-item">
+                <h3>Thursday</h3>
+                <label for="thursday-available">
+                    <input type="checkbox" id="thursday-available" name="availability[thursday][available]" onchange="toggleTimeSection('thursday')">
+                    Available
+                </label>
+                <div class="time-section" id="thursday-section">
+                    <label for="thursday-from">From:</label>
+                    <input type="time" id="thursday-from" name="availability[thursday][from]" placeholder="HH:MM">
+                    <label for="thursday-to">To:</label>
+                    <input type="time" id="thursday-to" name="availability[thursday][to]" placeholder="HH:MM">
+                </div>
+            </div>
+            <div class="day-item">
+                <h3>Friday</h3>
+                <label for="friday-available">
+                    <input type="checkbox" id="friday-available" name="availability[friday][available]" onchange="toggleTimeSection('friday')">
+                    Available
+                </label>
+                <div class="time-section" id="friday-section">
+                    <label for="friday-from">From:</label>
+                    <input type="time" id="friday-from" name="availability[friday][from]" placeholder="HH:MM">
+                    <label for="friday-to">To:</label>
+                    <input type="time" id="friday-to" name="availability[friday][to]" placeholder="HH:MM">
+                </div>
+            </div>
+            <div class="day-item">
+                <h3>Saturday</h3>
+                <label for="saturday-available">
+                    <input type="checkbox" id="saturday-available" name="availability[saturday][available]" onchange="toggleTimeSection('saturday')">
+                    Available
+                </label>
+                <div class="time-section" id="saturday-section">
+                    <label for="saturday-from">From:</label>
+                    <input type="time" id="saturday-from" name="availability[saturday][from]" placeholder="HH:MM">
+                    <label for="saturday-to">To:</label>
+                    <input type="time" id="saturday-to" name="availability[saturday][to]" placeholder="HH:MM">
+                </div>
+            </div>
+            <div class="day-item">
+                <h3>Sunday</h3>
+                <label for="sunday-available">
+                    <input type="checkbox" id="sunday-available" name="availability[sunday][available]" onchange="toggleTimeSection('sunday')">
+                    Available
+                </label>
+                <div class="time-section" id="sunday-section">
+                    <label for="sunday-from">From:</label>
+                    <input type="time" id="sunday-from" name="availability[sunday][from]" placeholder="HH:MM">
+                    <label for="sunday-to">To:</label>
+                    <input type="time" id="sunday-to" name="availability[sunday][to]" placeholder="HH:MM">
+                </div>
+            </div>
+        </div>
+    </div>
+    <label for="doctor-password-reg">Create Password:</label>
+    <div style="position:relative;">
+        <input type="password" id="doctor-password-reg" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+        <span class="password-toggle" onclick="togglePasswordVisibility('doctor-password-reg')">
+            <i class="fas fa-eye"></i>
+        </span>
+    </div>
+    <label for="doctor-confirm-password">Confirm Password:</label>
+    <input type="password" id="doctor-confirm-password" name="confirm-password" required>
+    <button type="submit" name="submit" value="Register Doctor">Register Doctor</button>
+</form>
+
+<script>
+// Toggle password visibility
+function togglePasswordVisibility(inputId) {
+    var input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+
+// Toggle time section visibility based on checkbox
+function toggleTimeSection(day) {
+    var checkbox = document.getElementById(day + '-available');
+    var section = document.getElementById(day + '-section');
+    if (checkbox.checked) {
+        section.style.display = 'block';
+    } else {
+        section.style.display = 'none';
+    }
+}
+
+// Apply timings to all weekdays
+function applyToAll() {
+    var mondayFrom = document.getElementById('monday-from').value;
+    var mondayTo = document.getElementById('monday-to').value;
+
+    document.getElementById('tuesday-from').value = mondayFrom;
+    document.getElementById('tuesday-to').value = mondayTo;
+    document.getElementById('wednesday-from').value = mondayFrom;
+    document.getElementById('wednesday-to').value = mondayTo;
+    document.getElementById('thursday-from').value = mondayFrom;
+    document.getElementById('thursday-to').value = mondayTo;
+    document.getElementById('friday-from').value = mondayFrom;
+    document.getElementById('friday-to').value = mondayTo;
+    document.getElementById('saturday-from').value = mondayFrom;
+    document.getElementById('saturday-to').value = mondayTo;
+    document.getElementById('sunday-from').value = mondayFrom;
+    document.getElementById('sunday-to').value = mondayTo;
+
+    // Show time sections for all weekdays if Monday is available
+    document.getElementById('tuesday-section').style.display = 'block';
+    document.getElementById('wednesday-section').style.display = 'block';
+    document.getElementById('thursday-section').style.display = 'block';
+    document.getElementById('friday-section').style.display = 'block';
+    document.getElementById('saturday-section').style.display = 'block';
+    document.getElementById('sunday-section').style.display = 'block';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healing Hands Hospital - Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="password"],
+        input[type="time"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+        .input-with-country-code {
+            display: flex;
+        }
+        .input-with-country-code select {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .input-with-country-code input {
+            flex: 2;
+        }
+        .first-time {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .link {
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .availability-form {
+            margin-top: 20px;
+        }
+        .day-selection {
+            margin-top: 10px;
+        }
+        .day-item {
+            margin-bottom: 10px;
+        }
+        .time-panel {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+        .time-panel label {
+            margin-top: 5px;
+        }
+        .time-section {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container background-login active" id="login">
+        <h2>Login</h2>
+        <button onclick="showSection('patient-login')" class="link">Patient Login</button><br>
+        <button onclick="showSection('doctor-login')" class="link">Doctor Login</button>
+    </div>
+
+    <div class="container background-login" id="patient-login">
+        <h2>Patient Login</h2>
+        <form action="login.php" method="POST" onsubmit="validateLogin(event, 'patient')">
+            <input type="hidden" name="userType" value="patient">
+            <label for="patient-email">Email:</label>
+            <input type="email" id="patient-email" name="email" required>
+            <label for="patient-password">Password:</label>
+            <div style="position:relative;">
+                <input type="password" id="patient-password" name="password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('patient-password')">
+                    <i class="fas fa-eye"></i>
+                </span>
+              </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="first-time">
+            &nbsp; <h4>First time visiting?</h4>
+            <button type="button" onclick="showSection('patient-register')" class="link">Register</button>
+        </div>
+        <button type="button" onclick="showSection('login')" class="back-link">Back to Login</button>
+    </div>
+
+    <div class="container background-login" id="doctor-login">
+        <h2>Doctor Login</h2>
+        <form action="login.php" method="POST" onsubmit="validateLogin(event, 'doctor')">
+            <input type="hidden" name="userType" value="doctor">
+            <label for="doctor-email">Email:</label>
+            <input type="email" id="doctor-email" name="email" required>
+            <label for="doctor-password">Password:</label>
+            <div style="position:relative;">
+                <input type="password" id="doctor-password" name="password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('doctor-password')">
+                    <i class="fas fa-eye"></i>
+                </span>
+              </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="first-time">
+            &nbsp; <h4>First time visiting?</h4>
+            <button type="button" onclick="showSection('doctor-register')" class="link">Register</button>
+        </div>
+        <button type="button" onclick="showSection('login')" class="back-link">Back to Login</button>
+    </div>
+
+    <div class="container background-register" id="patient-register">
+        <h2>Patient Registration</h2>
+        <form action="register.php" method="POST" onsubmit="validateRegistration(event, 'patient')">
+            <input type="hidden" name="userType" value="patient">
+            <label for="patient-name">Name:</label>
+            <input type="text" id="patient-name" name="name" required>
+            <label for="patient-contact">Contact No:</label>
+            <div class="input-with-country-code">
+                <select id="patient-country-code" name="country-code" required>
+                    <option value="+91">+91 (India)</option>
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <input type="text" id="patient-contact" name="contact" required placeholder="Enter your phone number">
+            </div>
+            <label for="patient-gender">Gender:</label>
+            <select id="patient-gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <label for="patient-email-reg">Email:</label>
+            <input type="email" id="patient-email-reg" name="email" required>
+            <label for="patient-password-reg">Create Password:</label>
+            <div style="position:relative;">
+            <input type="password" id="patient-password-reg" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                <span class="password-toggle" onclick="togglePasswordVisibility('patient-password-reg')">
+                    <i class="fas fa-eye"></i>
+                </span>
+                </div>
+            <label for="patient-confirm-password">Confirm Password:</label>
+            <input type="password" id="patient-confirm-password" name="confirm-password" required>
+            <label for="patient-age">Age:</label>
+            <input type="number" id="patient-age" name="age" required>
+        
+            <button type="submit">Submit</button>
+        </form>
+        <button type="button" onclick="showSection('patient-login')" class="back-link">Back to Login</button>
+    </div>
+
+    <div class="container background-register" id="doctor-register">
+        <h2>Doctor Registration</h2>
+        <form action="register.php" method="POST" onsubmit="validateRegistration(event, 'doctor')">
+            <input type="hidden" name="userType" value="doctor">
+            <label for="doctor-name">Name:</label>
+            <input type="text" id="doctor-name" name="name" required>
+            <label for="doctor-age">Age:</label>
+            <input type="number" id="doctor-age" name="age" required>
+            <label for="doctor-contact">Contact No:</label>
+            <div class="input-with-country-code">
+                <select id="doctor-country-code" name="country-code" required>
+                    <option value="+91">+91 (India)</option>
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <input type="text" id="doctor-contact" name="contact" required placeholder="Enter your phone number">
+            </div>
+            <label for="doctor-gender">Gender:</label>
+            <select id="doctor-gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <label for="doctor-email-reg">Email:</label>
+            <input type="email" id="doctor-email-reg" name="email" required>
+            <label for="doctor-specialization">Specialization:</label>
+            <select id="doctor-specialization" name="specialization" required>
+                <option value="cardiologist">Cardiologist</option>
+                <option value="neurologist">Neurologist</option>
+                <option value="dermatologist">Dermatologist</option>
+                <!-- Add more options as needed -->
+            </select>
+            <div class="availability-form">
+                <h2>Select Doctor Availability</h2>
+                <div class="day-selection">
+                    <div class="day-item">
+                        <label><input type="checkbox" id="monday" onclick="toggleDayPanel('monday')"> Monday</label>
+                        <div class="time-panel" id="monday-panel">
+                            <label><input type="checkbox" id="monday-9-12" name="availability[]" value="Monday 9-12"> 9 AM - 12 PM</label>
+                            <label><input type="checkbox" id="monday-12-3" name="availability[]" value="Monday 12-3"> 12 PM - 3 PM</label>
+                            <label><input type="checkbox" id="monday-3-6" name="availability[]" value="Monday 3-6"> 3 PM - 6 PM</label>
+                            <label><input type="checkbox" id="monday-6-9" name="availability[]" value="Monday 6-9"> 6 PM - 9 PM</label>
+                            <label><input type="checkbox" id="monday-9-12pm" name="availability[]" value="Monday 9-12pm"> 9 PM - 12 AM</label>
+                        </div>
+                    </div>
+                    <!-- Repeat for other days -->
+                    <div class="day-item">
+                        <label><input type="checkbox" id="tuesday" onclick="toggleDayPanel('tuesday')"> Tuesday</label>
+                        <div class="time-panel" id="tuesday-panel">
+                            <label><input type="checkbox" id="tuesday-9-12" name="availability[]" value="Tuesday 9-12"> 9 AM - 12 PM</label>
+                            <label><input type="checkbox" id="tuesday-12-3" name="availability[]" value="Tuesday 12-3"> 12 PM - 3 PM</label>
+                            <label><input type="checkbox" id="tuesday-3-6" name="availability[]" value="Tuesday 3-6"> 3 PM - 6 PM</label>
+                            <label><input type="checkbox" id="tuesday-6-9" name="availability[]" value="Tuesday 6-9"> 6 PM - 9 PM</label>
+                            <label><input type="checkbox" id="tuesday-9-12pm" name="availability[]" value="Tuesday 9-12pm"> 9 PM - 12 AM</label>
+                        </div>
+                    </div>
+                    <!-- Repeat for other days -->
+                    <div class="day-item">
+                        <label><input type="checkbox" id="wednesday" onclick="toggleDayPanel('wednesday')"> Wednesday</label>
+                        <div class="time-panel" id="wednesday-panel">
+                            <label><input type="checkbox" id="wednesday-9-12" name="availability[]" value="Wednesday 9-12"> 9 AM - 12 PM</label>
+                            <label><input type="checkbox" id="wednesday-12-3" name="availability[]" value="Wednesday 12-3"> 12 PM - 3 PM</label>
+                            <label><input type="checkbox" id="wednesday-3-6" name="availability[]" value="Wednesday 3-6"> 3 PM - 6 PM</label>
+                            <label><input type="checkbox" id="wednesday-6-9" name="availability[]" value="Wednesday 6-9"> 6 PM - 9 PM</label>
+                            <label><input type="checkbox" id="wednesday-9-12pm" name="availability[]" value="Wednesday 9-12pm"> 9 PM - 12 AM</label>
+                        </div>
+                    </div>
+                    <!-- Repeat for other days -->
+                    <div class="day-item">
+                        <label><input type="checkbox" id="thursday" onclick="toggleDayPanel('thursday')"> Thursday</label>
+                        <div class="time-panel" id="thursday-panel">
+                            <label><input type="checkbox" id="thursday-9-12" name="availability[]" value="Thursday 9-12"> 9 AM - 12 PM</label>
+                            <label><input type="checkbox" id="thursday-12-3" name="availability[]" value="Thursday 12-3"> 12 PM - 3 PM</label>
+                            <label><input type="checkbox" id="thursday-3-6" name="availability[]" value="Thursday 3-6"> 3 PM - 6 PM</label>
+                            <label><input type="checkbox" id="thursday-6-9" name="availability[]" value="Thursday 6-9"> 6 PM - 9 PM</label>
+                            <label><input type="checkbox" id="thursday-9-12pm" name="availability[]" value="Thursday 9-12pm"> 9 PM - 12 AM</label>
+                        </div>
+                    </div>
+                    <!-- Repeat for other days -->
+                    <div class="day-item">
+                        <label><input type="checkbox" id="friday" onclick="toggleDayPanel('friday')"> Friday</label>
+                        <div class="time-panel" id="friday-panel">
+                            <label><input type="checkbox" id="friday-9-12" name="availability[]" value="Friday 9-12"> 9 AM - 12 PM</label>
+                            <label><input type="checkbox" id="friday-12-3" name="availability[]" value="Friday 12-3"> 12 PM - 3 PM</label>
+                            <label><input type="checkbox" id="friday-3-6" name="availability[]" value="Friday 3-6"> 3 PM - 6 PM</label>
+                            <label><input type="checkbox" id="friday-6-9" name="availability[]" value="Friday 6-9"> 6 PM - 9 PM</label>
+                            <label><input type="checkbox" id="friday-9-12pm" name="availability[]" value="Friday 9-12pm"> 9 PM - 12 AM</label>
+                        </div>
+                    </div>
+                    <!-- Repeat for other days -->
+                    <div class="day-item">
+                        <label><input type="checkbox" id="saturday" onclick="toggleDayPanel('saturday')"> Saturday</label>
+                        <div class="time-panel" id="saturday-panel">
+                            <label><input type="checkbox" id="saturday-9-12" name="availability[]" value="Saturday 9-12"> 9 AM - 12 PM</label>
+                            <label><input type="checkbox" id="saturday-12-3" name="availability[]" value="Saturday 12-3"> 12 PM - 3 PM</label>
+                            <label><input type="checkbox" id="saturday-3-6" name="availability[]" value="Saturday 3-6"> 3 PM - 6 PM</label>
+                            <label><input type="checkbox" id="saturday-6-9" name="availability[]" value="Saturday 6-9"> 6 PM - 9 PM</label>
+                            <label><input type="checkbox" id="saturday-9-12pm" name="availability[]" value="Saturday 9-12pm"> 9 PM - 12 AM</label>
+                        </div>
+                    </div>
+                    <!-- Repeat for other days -->
+                    <div class="day-item">
+                        <label><input type="checkbox" id="sunday" onclick="toggleDayPanel('sunday')"> Sunday</label>
+                        <div class="time-panel" id="sunday-panel">
+                            <label><input type="checkbox" id="sunday-9-12" name="availability[]" value="Sunday 9-12"> 9 AM - 12 PM</label>
+                            <label><input type="checkbox" id="sunday-12-3" name="availability[]" value="Sunday 12-3"> 12 PM - 3 PM</label>
+                            <label><input type="checkbox" id="sunday-3-6" name="availability[]" value="Sunday 3-6"> 3 PM - 6 PM</label>
+                            <label><input type="checkbox" id="sunday-6-9" name="availability[]" value="Sunday 6-9"> 6 PM - 9 PM</label>
+                            <label><input type="checkbox" id="sunday-9-12pm" name="availability[]" value="Sunday 9-12pm"> 9 PM - 12 AM</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label for="doctor-password-reg">Create Password:</label>
+            <div style="position:relative;">
+            <input type="password" id="doctor-password-reg" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                <span class="password-toggle" onclick="togglePasswordVisibility('doctor-password-reg')">
+                    <i class="fas fa-eye"></i>
+                </span>
+                </div>
+            <label for="doctor-confirm-password">Confirm Password:</label>
+            <input type="password" id="doctor-confirm-password" name="confirm-password" required>
+            <button type="submit">Submit</button>
+        </form>
+        <button type="button" onclick="showSection('doctor-login')" class="back-link">Back to Login</button>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
+

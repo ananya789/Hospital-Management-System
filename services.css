@@ -1,0 +1,105 @@
+/* Reset and basic styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6; /* Light background */
+}
+
+/* Header styling */
+header {
+    background-color: #2e86c1; /* Blue background */
+    color: #ffffff; /* White text */
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+header h1 {
+    font-size: 2rem; /* Header font size */
+    margin: 0;
+}
+
+/* Container for centering content */
+.services-section {
+    max-width: 800px; /* Limit maximum width for readability */
+    margin: 2rem auto; /* Center align and add spacing */
+    padding: 2rem;
+    background: linear-gradient(135deg, #ffffff, #f1f1f1); /* Gradient background */
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    text-align: center; /* Center align content */
+    animation: fadeIn 1s ease-in-out; /* Smooth fade-in effect */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.services-section h2 {
+    color: #2e86c1; /* Blue color for subheading */
+    font-size: 2rem; /* Larger font size for emphasis */
+    margin-bottom: 1.5rem; /* Space below heading */
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.3rem;
+    border-bottom: 3px solid #2e86c1; /* Underline effect */
+}
+
+.services-section p {
+    color: #555; /* Dark gray text color */
+    font-size: 1.2rem; /* Slightly larger font size */
+    line-height: 1.8; /* Spacing between lines */
+    margin-bottom: 1.5rem; /* Space below paragraphs */
+}
+
+/* Styling links */
+.services-section a {
+    color: #3498db; /* Blue color for links */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s, transform 0.3s; /* Smooth color and transform transition */
+}
+
+.services-section a:hover {
+    color: #2980b9; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Button styling */
+.services-section .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.7rem 1.5rem;
+    color: #fff;
+    background-color: #2e86c1; /* Blue button background */
+    border-radius: 50px; /* Rounded button */
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+
+.services-section .btn:hover {
+    background-color: #1b4f72; /* Darker blue on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .services-section {
+        padding: 1.5rem; /* Reduce padding for smaller screens */
+    }
+    
+    .services-section h2 {
+        font-size: 1.5rem; /* Adjust subheading size */
+    }
+    
+    .services-section p {
+        font-size: 1rem; /* Adjust paragraph font size */
+    }
+    
+    .services-section .btn {
+        width: 100%; /* Full-width button on smaller screens */
+    }
+}

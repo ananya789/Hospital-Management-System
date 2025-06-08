@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healing Hands Hospital - Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container background-login active" id="login">
+        <h2>Login</h2>
+        <button onclick="showSection('patient-login')" class="link">Patient Login</button><br>
+        <button onclick="showSection('doctor-login')" class="link">Doctor Login</button>
+    </div>
+
+    <div class="container background-login" id="patient-login">
+        <h2>Patient Login</h2>
+        <form action="login.php" method="POST">
+            <input type="hidden" name="userType" value="patient">        
+            <label for="patient-email">Email:</label>
+            <input type="email" id="patient-email" name="email" required>
+            <label for="patient-password">Password:</label>
+            <div style="position:relative;">
+                <input type="password" id="patient-password" name="password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('patient-password')">
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="first-time">
+            <h4>First time visiting?</h4>
+            <button type="button" onclick="showSection('patient-register')" class="link">Register</button>
+        </div>
+        <button type="button" onclick="showSection('login')" class="back-link">Back to Login</button>
+    </div>
+
+    <div class="container background-login" id="doctor-login">
+        <h2>Doctor Login</h2>
+        <form action="login.php" method="POST">
+            <input type="hidden" name="userType" value="doctor">
+            <label for="doctor-email">Email:</label>
+            <input type="email" id="doctor-email" name="email" required>
+            <label for="doctor-password">Password:</label>
+            <div style="position:relative;">
+                <input type="password" id="doctor-password" name="password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('doctor-password')">
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="first-time">
+            <h4>First time visiting?</h4>
+            <button type="button" onclick="showSection('doctor-register')" class="link">Register</button>
+        </div>
+        <button type="button" onclick="showSection('login')" class="back-link">Back to Login</button>
+    </div>
+
+    <div class="container background-register" id="patient-register">
+        <h2>Patient Registration</h2>
+        <form action="register.php" method="POST">
+            <input type="hidden" name="userType" value="patient">
+            <label for="patient-name">Name:</label>
+            <input type="text" id="patient-name" name="name" required>
+            <label for="patient-contact">Contact No:</label>
+            <div class="input-with-country-code">
+                <select id="patient-country-code" name="country-code" required>
+                    <option value="+91">+91 (India)</option>
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+44">+44 (UK)</option>
+                </select>
+                <input type="text" id="patient-contact" name="contact" required placeholder="Enter your phone number">
+            </div>
+            <label for="patient-gender">Gender:</label>
+            <select id="patient-gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <label for="patient-email-reg">Email:</label>
+            <input type="email" id="patient-email-reg" name="email" required>
+            <label for="patient-password-reg">Create Password:</label>
+            <div style="position:relative;">
+                <input type="password" id="patient-password-reg" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                <span class="password-toggle" onclick="togglePasswordVisibility('patient-password-reg')">
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+            <label for="patient-confirm-password">Confirm Password:</label>
+            <input type="password" id="patient-confirm-password" name="confirm-password" required>
+            <label for="patient-age">Age:</label>
+            <input type="number" id="patient-age" name="age" required>
+            <button type="submit">Submit</button>
+        </form>
+        <button type="button" onclick="showSection('patient-login')" class="back-link">Back to Login</button>
+    </div>
+
+    <div class="container background-register" id="doctor-register">
+        <h2>Doctor Registration</h2>
+        <form action="register_doc.php" method="POST">
+            <input type="hidden" name="userType" value="doctor">
+            <label for="doctor-name">Name:</label>
+            <input type="text" id="doctor-name" name="name" required>
+            <label for="doctor-contact">Contact No:</label>
+            <div class="input-with-country-code">
+                <select id="doctor-country-code" name="country-code" required>
+                    <option value="+91">+91 (India)</option>
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+44">+44 (UK)</option>
+                </select>
+                <input type="text" id="doctor-contact" name="contact" required placeholder="Enter your phone number">
+            </div>
+            <label for="doctor-gender">Gender:</label>
+            <select id="doctor-gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <label for="doctor-email-reg">Email:</label>
+            <input type="email" id="doctor-email-reg" name="email" required>
+            <label for="doctor-password-reg">Create Password:</label>
+            <div style="position:relative;">
+                <input type="password" id="doctor-password-reg" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                <span class="password-toggle" onclick="togglePasswordVisibility('doctor-password-reg')">
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+            <label for="doctor-confirm-password">Confirm Password:</label>
+            <input type="password" id="doctor-confirm-password" name="confirm-password" required>
+            <label for="doctor-specialization">Specialization:</label>
+            <select id="doctor-specialization" name="specialization" required>
+                <option value="">Select Specialization</option>
+                <option value="Cardiologist">Cardiology</option>
+                <option value="Dermatologist">Dermatology</option>
+                <option value="Neurologist">Neurology</option>
+                <option value="Orthopedician">Orthopedics</option>
+                <option value="Pediatrician">Pediatrics</option>
+                <option value="Psychiatrist">Psychiatry</option>
+                <option value="Radiologist">Radiology</option>
+                <option value="Gynocologist">gynocologist</option>
+                <option value="Ophthalmologist">optamologist</option>
+                <option value="General Physician">general physician</option>
+            </select>
+            
+            <label for="doctor-degree">Degree:</label>
+            <input type="text" id="doctor-degree" name="degree" required>
+            <label for="doctor-experience">Years of Experience:</label>
+            <input type="number" id="doctor-experience" name="experience" required>
+            <label for="doctor-weekdays-availability">Availability:</label>
+            <div>
+                <label>
+                    <input type="checkbox" id="monday-available" name="availability[Monday]" onclick="toggleTimeSection('monday')"> Monday
+                </label>
+                <div id="monday-section" class="time-section">
+                    <label for="monday-from">From:</label>
+                    <input type="time" id="monday-from" name="availability[Monday][from]">
+                    <label for="monday-to">To:</label>
+                    <input type="time" id="monday-to" name="availability[Monday][to]">
+                </div>
+                <label>
+                    <input type="checkbox" id="tuesday-available" name="availability[Tuesday]" onclick="toggleTimeSection('tuesday')"> Tuesday
+                </label>
+                <div id="tuesday-section" class="time-section">
+                    <label for="tuesday-from">From:</label>
+                    <input type="time" id="tuesday-from" name="availability[Tuesday][from]">
+                    <label for="tuesday-to">To:</label>
+                    <input type="time" id="tuesday-to" name="availability[Tuesday][to]">
+                </div>
+                <label>
+                    <input type="checkbox" id="wednesday-available" name="availability[Wednesday]" onclick="toggleTimeSection('wednesday')"> Wednesday
+                </label>
+                <div id="wednesday-section" class="time-section">
+                    <label for="wednesday-from">From:</label>
+                    <input type="time" id="wednesday-from" name="availability[Wednesday][from]">
+                    <label for="wednesday-to">To:</label>
+                    <input type="time" id="wednesday-to" name="availability[Wednesday][to]">
+                </div>
+                <label>
+                    <input type="checkbox" id="thursday-available" name="availability[Thursday]" onclick="toggleTimeSection('thursday')"> Thursday
+                </label>
+                <div id="thursday-section" class="time-section">
+                    <label for="thursday-from">From:</label>
+                    <input type="time" id="thursday-from" name="availability[Thursday][from]">
+                    <label for="thursday-to">To:</label>
+                    <input type="time" id="thursday-to" name="availability[Thursday][to]">
+                </div>
+                <label>
+                    <input type="checkbox" id="friday-available" name="availability[Friday]" onclick="toggleTimeSection('friday')"> Friday
+                </label>
+                <div id="friday-section" class="time-section">
+                    <label for="friday-from">From:</label>
+                    <input type="time" id="friday-from" name="availability[Friday][from]">
+                    <label for="friday-to">To:</label>
+                    <input type="time" id="friday-to" name="availability[Friday][to]">
+                </div>
+                <label>
+                    <input type="checkbox" id="saturday-available" name="availability[Saturday]" onclick="toggleTimeSection('saturday')"> Saturday
+                </label>
+                <div id="saturday-section" class="time-section">
+                    <label for="saturday-from">From:</label>
+                    <input type="time" id="saturday-from" name="availability[Saturday][from]">
+                    <label for="saturday-to">To:</label>
+                    <input type="time" id="saturday-to" name="availability[Saturday][to]">
+                </div>
+                <label>
+                    <input type="checkbox" id="sunday-available" name="availability[Sunday]" onclick="toggleTimeSection('sunday')"> Sunday
+                </label>
+                <div id="sunday-section" class="time-section">
+                    <label for="sunday-from">From:</label>
+                    <input type="time" id="sunday-from" name="availability[Sunday][from]">
+                    <label for="sunday-to">To:</label>
+                    <input type="time" id="sunday-to" name="availability[Sunday][to]">
+                </div>
+            </div>
+            <div>
+                <button type="button" onclick="applyToAll()">Apply Monday's time to all days</button>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <button type="button" onclick="showSection('doctor-login')" class="back-link">Back to Login</button>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

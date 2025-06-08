@@ -1,0 +1,131 @@
+/* General styles */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #fdf5e6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.newspaper {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.header {
+    background-color: #f7d26a;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #333;
+}
+
+.header h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: normal;
+}
+
+.container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.news-item {
+    background-color: #fafafa;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    page-break-inside: avoid;
+}
+
+.frame {
+    border: none;
+    padding: 0;
+}
+
+.news-item h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+.meta {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.highlight {
+    background-color: #fefefe;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.highlight strong {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: #555;
+    transform: translateY(-3px);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .news-item h2 {
+        font-size: 1.2em;
+    }
+
+    .button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}

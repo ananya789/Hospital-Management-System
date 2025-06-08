@@ -1,0 +1,122 @@
+/* Reset and basic styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #e0f7fa;
+}
+
+/* Container for centering content */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Section for contact content */
+.contact-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #ff6f00, #ffb300);
+    color: #ffffff;
+    border-radius: 15px;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.contact-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-box {
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    width: calc(30% - 2rem);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.contact-box i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contact-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-box p {
+    font-size: 1.1rem;
+}
+
+/* Specific box colors */
+.email-box {
+    background-color: #1e88e5;
+}
+
+.instagram-box {
+    background-color: #e1306c;
+}
+
+.phone-box.india {
+    background-color: #43a047;
+}
+
+.phone-box.uk {
+    background-color: #673ab7;
+}
+
+.phone-box.usa {
+    background-color: #f44336;
+}
+
+.twitter-box {
+    background-color: #1da1f2;
+}
+
+.facebook-box {
+    background-color: #3b5998;
+}
+
+.contact-logo {
+    margin-left: 0.5rem;
+    width: 24px;
+    height: 24px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-box {
+        width: calc(45% - 2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-box {
+        width: 100%;
+    }
+}
