@@ -85,16 +85,16 @@ Step 3: Start a Local Server
 Using XAMPP/WAMP: Place the folder in htdocs and run Apache & MySQL.
 Access via: http://localhost/hospital-management-system/index.html
 
-📌 How to Use
-👤 Patient Side
+**📌 How to Use
+👤 Patient Side**
 Register via the signup form.
 Login to your dashboard.
 Enter symptoms and optionally upload files.
 Use the chatbot to select specialization.
 Choose a doctor and book appointment.
 
-**###Create Required Tables
-**-- Doctors table
+****###Create Required Tables
+**-- Doctors table**
 CREATE TABLE doctors (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100),
@@ -131,15 +131,14 @@ CREATE TABLE appointments (
 );
 
 Get confirmation message and track bookings.
-###👨‍⚕️ Doctor Side
+**###👨‍⚕️ Doctor Side**
 Register your details and login.
 Access personalized dashboard.
 View all scheduled appointments.
 Check patient details and symptoms.
 Update availability and manage profile.
-
-##How to Use
-###👤 Patient Side
+**##How to Use
+###👤 Patient Side**
 Register via the signup form.
 Login to your dashboard.
 Enter symptoms and optionally upload files.
