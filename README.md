@@ -137,8 +137,8 @@ Access personalized dashboard.
 View all scheduled appointments.
 Check patient details and symptoms.
 Update availability and manage profile.
-**##How to Use
-###👤 Patient Side**
+##How to Use
+###👤 Patient Side
 Register via the signup form.
 Login to your dashboard.
 Enter symptoms and optionally upload files.
