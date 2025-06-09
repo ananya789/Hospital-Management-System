@@ -130,17 +130,16 @@ CREATE TABLE appointments (
     FOREIGN KEY (doctor_id) REFERENCES doctors(id)
 );
 
-
 Get confirmation message and track bookings.
-👨‍⚕️ Doctor Side
+###👨‍⚕️ Doctor Side
 Register your details and login.
 Access personalized dashboard.
 View all scheduled appointments.
 Check patient details and symptoms.
 Update availability and manage profile.
 
-How to Use
-👤 Patient Side
+##How to Use
+###👤 Patient Side
 Register via the signup form.
 Login to your dashboard.
 Enter symptoms and optionally upload files.
@@ -148,7 +147,7 @@ Use the chatbot to select specialization.
 Choose a doctor and book appointment.
 Get confirmation message and track bookings.
 
-👨‍⚕️ Doctor Side
+###👨‍⚕️ Doctor Side
 Register your details and login.
 Access personalized dashboard.
 View all scheduled appointments.
